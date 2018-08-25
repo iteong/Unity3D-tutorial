@@ -26,6 +26,10 @@ public class Hacker : MonoBehaviour {
         Terminal.WriteLine("The user typed " + input);
 
         print(input == "1"); // print only when this is true
+
+        if (input == "menu") {
+            ShowMainMenu("Welcomed again!");
+        }
     }
 	
 	// Update is called once per frame
