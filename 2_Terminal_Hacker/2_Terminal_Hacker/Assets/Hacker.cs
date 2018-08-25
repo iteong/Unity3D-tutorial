@@ -7,6 +7,10 @@ public class Hacker : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         print("Console initialised!");
+        ShowMainMenu();
+    }
+
+    void ShowMainMenu () {
         Terminal.WriteLine("Welcome to Ivan's World!");
         Terminal.WriteLine("Where do you want to hack into?");
         Terminal.WriteLine("Press 1 for the local library");
