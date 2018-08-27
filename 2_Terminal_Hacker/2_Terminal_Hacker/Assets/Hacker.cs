@@ -26,7 +26,7 @@ public class Hacker : MonoBehaviour {
         Terminal.WriteLine("Where do you want to hack into?");
         Terminal.WriteLine("Press 1 for the local library");
         Terminal.WriteLine("Press 2 for the police station");
-        Terminal.WriteLine("Enter your selection:");
+        Terminal.WriteLine("Enter your selection: ");
         
     }
 
@@ -38,9 +38,28 @@ public class Hacker : MonoBehaviour {
         if (input == "menu") { // we can always go direct to main menu
             ShowMainMenu("Welcomed again!"); // user logins again
 
-        } else if (currentScreen == Screen.MainMenu) // if user is already on main menu
-        {
+        } else if (currentScreen == Screen.MainMenu) { // if user is already on main menu
             RunMainMenu(input);
+        } else if (currentScreen == Screen.Password) {
+            CheckPassword(input);
+        } else { // if on win screen
+            Terminal.WriteLine("Congrats on hacking successfully!");
+        }
+    }
+
+    void CheckPassword(string input)
+    {
+        if (level == 1 && input == "books")
+        {
+            WinGame(level);
+        }
+        else if (level == 2 && input == "crime")
+        {
+            WinGame(level);
+        }
+        else
+        {
+            Terminal.WriteLine("Wrong password! Try again: ");
         }
     }
 
@@ -67,7 +86,13 @@ public class Hacker : MonoBehaviour {
     {
         Terminal.WriteLine("You have chosen level " + level);
         currentScreen = Screen.Password; // password screen after correct level chosen
-        Terminal.WriteLine("Please enter your password");
+        Terminal.WriteLine("Please enter your password: ");
+    }
+
+    void WinGame(int level) // execute password functionaltiy
+    {
+        currentScreen = Screen.WinScreen;
+        Terminal.WriteLine("You hacked successfully into level " + level + "!");
     }
 
     // Update is called once per frame
