@@ -29,29 +29,40 @@ public class Hacker : MonoBehaviour {
         
     }
 
-    void OnUserInput(string input) {
+    void OnUserInput(string input) { // method only for handling input, not actually execute menu
         Terminal.WriteLine("The user typed " + input);
 
-        print(input == "1"); // print true when this evaluation is true
+        print(input == "menu"); // print true when this evaluation is true
 
-        if (input == "menu") {
+        if (input == "menu") { // we can always go direct to main menu
             ShowMainMenu("Welcomed again!"); // user logins again
 
-        } // TODO handle differently based on screen
+        } else if (currentScreen == Screen.MainMenu) // if user is already on main menu
+        {
+            RunMainMenu(input);
+        }
+    }
 
-        else if (input == "1") {
+    private void RunMainMenu(string input) // execute main menu functionality
+    {
+        if (input == "1")
+        {
             level = 1;
             StartGame(level);
 
-        } else if (input == "2") {
+        }
+        else if (input == "2")
+        {
             level = 2;
             StartGame(level);
-        } else {
+        }
+        else
+        {
             Terminal.WriteLine("Please choose a valid level!");
         }
     }
 
-    private void StartGame(int level)
+    private void StartGame(int level) // execute password functionaltiy
     {
         Terminal.WriteLine("You have chosen level " + level);
         currentScreen = Screen.Password; // password screen after correct level chosen
