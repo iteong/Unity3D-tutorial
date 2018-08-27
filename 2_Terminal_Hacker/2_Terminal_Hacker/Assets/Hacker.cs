@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
-    // Game states
-    int level; // member variable available everywhere to store state
+    // Game states: member variables available everywhere to store states
+    int level;
 
     enum Screen {MainMenu, Password, WinScreen} // new variable type to store state using enum type (Finite state machines)
     Screen currentScreen;
+
+    string password;
 
     // Use this for initialization
     void Start () {
@@ -21,6 +23,7 @@ public class Hacker : MonoBehaviour {
 
     void ShowMainMenu (string greeting) {
         currentScreen = Screen.MainMenu; // set screen to main menu so won't think it is on other screens
+        level = 0;
         Terminal.ClearScreen();
         Terminal.WriteLine(greeting);
         Terminal.WriteLine("Where do you want to hack into?");
@@ -47,37 +50,24 @@ public class Hacker : MonoBehaviour {
         }
     }
 
-    void CheckPassword(string input)
-    {
-        if (level == 1 && input == "books")
-        {
-            WinGame(level);
-        }
-        else if (level == 2 && input == "crime")
-        {
-            WinGame(level);
-        }
-        else
-        {
-            Terminal.WriteLine("Wrong password! Try again: ");
-        }
-    }
-
     void RunMainMenu(string input) // execute main menu functionality
     {
         if (input == "1")
         {
             level = 1;
+            password = "books";
             StartGame(level);
 
         }
         else if (input == "2")
         {
             level = 2;
+            password = "crime";
             StartGame(level);
         }
         else
         {
+            level = 0;
             Terminal.WriteLine("Please choose a valid level!");
         }
     }
@@ -89,10 +79,21 @@ public class Hacker : MonoBehaviour {
         Terminal.WriteLine("Please enter your password: ");
     }
 
-    void WinGame(int level) // execute password functionaltiy
+    void CheckPassword(string input)
+    {
+        if (input == password)
+        {
+            WinGame();
+        } else {
+            Terminal.WriteLine("Wrong password! Try again: ");
+        }
+    }
+
+    void WinGame() // execute password functionaltiy
     {
         currentScreen = Screen.WinScreen;
-        Terminal.WriteLine("You hacked successfully into level " + level + "!");
+        Terminal.WriteLine("You hacked successfully!");
+        Terminal.WriteLine("Reset game by typing menu");
     }
 
     // Update is called once per frame
