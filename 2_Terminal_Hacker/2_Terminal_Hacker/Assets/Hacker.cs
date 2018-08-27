@@ -8,6 +8,9 @@ public class Hacker : MonoBehaviour {
     // Game states
     int level; // member variable available everywhere to store state
 
+    enum Screen {MainMenu, Password, WinScreen} // new variable type to store state using enum type (Finite state machines)
+    Screen currentScreen = Screen.MainMenu; // initialise new variable called currentScreen as main menu
+
     // Use this for initialization
     void Start () {
         print("Console initialised!");
@@ -34,7 +37,9 @@ public class Hacker : MonoBehaviour {
         if (input == "menu") {
             ShowMainMenu("Welcomed again!"); // user logins again
 
-        } else if (input == "1") {
+        } // TODO handle differently based on screen
+
+        else if (input == "1") {
             level = 1;
             StartGame(level);
 
@@ -49,6 +54,8 @@ public class Hacker : MonoBehaviour {
     private void StartGame(int level)
     {
         Terminal.WriteLine("You have chosen level " + level);
+        currentScreen = Screen.Password; // password screen after correct level chosen
+        Terminal.WriteLine("Please enter your password");
     }
 
     // Update is called once per frame
