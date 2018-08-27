@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
-    // Game states: member variables available everywhere to store states
+    // GAME CONFIGURATION DATA
+    string[] level1Passwords = { "books", "borrow", "librarian"};
+    string[] level2Passwords = { "crime", "gun", "baton" };
+
+    // GAME STATES (member variables available everywhere to store states)
     int level;
 
     enum Screen {MainMenu, Password, WinScreen} // new variable type to store state using enum type (Finite state machines)
@@ -55,14 +59,14 @@ public class Hacker : MonoBehaviour {
         if (input == "1")
         {
             level = 1;
-            password = "books";
+            password = level1Passwords[2]; // TODO make random later
             StartGame(level);
 
         }
         else if (input == "2")
         {
             level = 2;
-            password = "crime";
+            password = level1Passwords[0];
             StartGame(level);
         }
         else
