@@ -69,12 +69,10 @@ public class Hacker : MonoBehaviour {
         Terminal.ClearScreen();
         switch(level) {
             case 1:
-                int index1 = Random.Range(0, level1Passwords.Length); // Random.Range(Min, Max) where Max is excluded while Min is included
-                password = level1Passwords[index1];
+                password = level1Passwords[Random.Range(0, level1Passwords.Length)];
                 break;
             case 2:
-                int index2 = Random.Range(0, level2Passwords.Length);
-                password = level2Passwords[index2];
+                password = level2Passwords[Random.Range(0, level2Passwords.Length)];
                 break;
             default:
                 Debug.LogError("Invalid level number!"); // should never get here with isValidLevelNumber
