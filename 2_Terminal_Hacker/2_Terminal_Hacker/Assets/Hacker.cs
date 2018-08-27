@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
     // GAME CONFIGURATION DATA
-    string[] level1Passwords = { "books", "borrow", "librarian"};
-    string[] level2Passwords = { "crime", "gun", "baton" };
+    string[] level1Passwords = { "books", "borrow", "librarian", "self", "aisle"};
+    string[] level2Passwords = { "crime", "gun", "baton", "handcuffs", "holster", "arrest" };
 
     // GAME STATES (member variables available everywhere to store states)
     int level;
@@ -72,10 +69,12 @@ public class Hacker : MonoBehaviour {
         Terminal.ClearScreen();
         switch(level) {
             case 1:
-                password = level1Passwords[2]; // TODO make random later
+                int index1 = Random.Range(0, level1Passwords.Length); // Random.Range(Min, Max) where Max is excluded while Min is included
+                password = level1Passwords[index1];
                 break;
             case 2:
-                password = level2Passwords[0];
+                int index2 = Random.Range(0, level2Passwords.Length);
+                password = level2Passwords[index2];
                 break;
             default:
                 Debug.LogError("Invalid level number!"); // should never get here with isValidLevelNumber
