@@ -121,6 +121,9 @@ public class Hacker : MonoBehaviour {
 (_//               
 ");
                 break;
+            default:
+                Debug.LogError("Invalid level reached");
+                break;
         }
     }
 
