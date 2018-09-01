@@ -94,8 +94,34 @@ public class Hacker : MonoBehaviour {
     void WinGame() // execute password functionaltiy
     {
         currentScreen = Screen.WinScreen;
-        Terminal.WriteLine("You hacked successfully!");
-        Terminal.WriteLine("Reset game by typing menu");
+        Terminal.ClearScreen();
+        ShowLevelReward();
+    }
+
+    void ShowLevelReward()
+    {
+        switch(level) {
+            case 1:
+                Terminal.WriteLine("You won a book!");
+                Terminal.WriteLine(@"
+    ________
+   /      //
+  /      //
+ /______//
+(______(/                
+");
+                break;
+            case 2:
+                Terminal.WriteLine("You won a gun!");
+                Terminal.WriteLine(@"
+    ____________
+   /       /____//
+  / ___________//
+ / //-/
+(_//               
+");
+                break;
+        }
     }
 
     // Update is called once per frame
