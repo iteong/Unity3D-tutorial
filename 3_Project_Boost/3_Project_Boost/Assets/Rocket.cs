@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour {
 
+    // member global variables
     Rigidbody rigidBody;
+    float rotationSpeed = 20;
 
 	// Use this for initialization
 	void Start () {
@@ -22,21 +24,22 @@ public class Rocket : MonoBehaviour {
             rigidBody.AddRelativeForce(Vector3.up);
         }
 
+        // rotate rocket left or right
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidBody.AddRelativeForce(Vector3.left);
+            transform.Rotate(rotationSpeed * (Vector3.forward * Time.deltaTime)); // Time.deltaTime is last frame time
         } 
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            rigidBody.AddRelativeForce(Vector3.right);
+            transform.Rotate(rotationSpeed * (-Vector3.forward * Time.deltaTime));
         } 
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            rigidBody.AddRelativeForce(Vector3.forward);
+            transform.Rotate(rotationSpeed * (Vector3.right * Time.deltaTime));
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            rigidBody.AddRelativeForce(Vector3.back);
+            transform.Rotate(rotationSpeed * (-Vector3.right * Time.deltaTime));
         }
     }
 }
