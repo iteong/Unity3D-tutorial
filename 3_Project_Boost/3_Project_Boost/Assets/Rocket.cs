@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Rocket : MonoBehaviour {
 
     Rigidbody rigidBody;
     AudioSource audioSource;
+
 
     // Use this for initialization
     void Start () {
@@ -64,11 +66,13 @@ public class Rocket : MonoBehaviour {
             case "Friendly":
                 print("OK");
                 break;
-            case "Fuel":
-                print("Fuel");
+            case "Finish":
+                print("Finish");
+                SceneManager.LoadScene(1);
                 break;
             default:
                 print("Dead");
+                SceneManager.LoadScene(0);
                 break;
         }
     }

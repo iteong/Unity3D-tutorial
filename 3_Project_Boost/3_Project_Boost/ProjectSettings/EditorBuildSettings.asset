@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Level 1.unity
+    guid: 091ebdad0f6a449d68e8b3ff102bb7f1
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/43622120186e6454a9df9e99dcc05cab
+    guid: 43622120186e6454a9df9e99dcc05cab
+  - enabled: 1
+    path: Assets/Level 2.unity
+    guid: 2603cce525237410d9d9c849369d96e9
   m_configObjects: {}
