@@ -5,13 +5,13 @@ using UnityEngine;
 public class Rocket : MonoBehaviour {
 
     // member global variables
-    Rigidbody rigidBody;
-    float rotationSpeed = 20;
+    [SerializeField] float rcsThrust = 100f;
 
+    Rigidbody rigidBody;
     AudioSource audioSource;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -43,13 +43,15 @@ public class Rocket : MonoBehaviour {
     {
         rigidBody.freezeRotation = true; // take manual control of rotation
 
+        float rotationThisFrame = rcsThrust * Time.deltaTime; // Time.deltaTime is last frame time
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Rotate(rotationSpeed * (Vector3.forward * Time.deltaTime)); // Time.deltaTime is last frame time
+            transform.Rotate(Vector3.forward * rotationThisFrame);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Rotate(rotationSpeed * (-Vector3.forward * Time.deltaTime));
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
 
         rigidBody.freezeRotation = false; // resume physics control of rotation
