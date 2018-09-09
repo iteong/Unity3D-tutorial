@@ -6,6 +6,7 @@ public class Rocket : MonoBehaviour {
 
     // member global variables
     [SerializeField] float rcsThrust = 100f;
+    [SerializeField] float mainThrust = 50f;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -27,7 +28,7 @@ public class Rocket : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidBody.AddRelativeForce(Vector3.up);
+            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
