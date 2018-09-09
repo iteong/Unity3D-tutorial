@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour {
 
     // member global variables
-    [SerializeField] float rcsThrust = 100f;
+    [SerializeField] float rcsThrust = 250f; // need to change in Inspector
     [SerializeField] float mainThrust = 50f;
 
     Rigidbody rigidBody;
@@ -57,4 +57,19 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.freezeRotation = false; // resume physics control of rotation
    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag) {
+            case "Friendly":
+                print("OK");
+                break;
+            case "Fuel":
+                print("Fuel");
+                break;
+            default:
+                print("Dead");
+                break;
+        }
+    }
 }
