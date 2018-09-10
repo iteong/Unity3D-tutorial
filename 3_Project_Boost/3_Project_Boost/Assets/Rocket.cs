@@ -8,9 +8,14 @@ public class Rocket : MonoBehaviour {
     // member global variables
     [SerializeField] float rcsThrust = 250f; // need to change in Inspector
     [SerializeField] float mainThrust = 50f;
+
     [SerializeField] AudioClip mainEngine;
-    [SerializeField] AudioClip death;
     [SerializeField] AudioClip success;
+    [SerializeField] AudioClip death;
+
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem deathParticles;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -35,13 +40,14 @@ public class Rocket : MonoBehaviour {
 
     private void RespondToThrustInput()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Z))
         {
             ApplyThrust();
         }
         else
         {
             audioSource.Stop();
+            mainEngineParticles.Stop();
         }
     }
 
@@ -52,6 +58,7 @@ public class Rocket : MonoBehaviour {
         {
             audioSource.PlayOneShot(mainEngine);
         }
+        mainEngineParticles.Play();
     }
 
     private void RespondToRotateInput()
@@ -94,6 +101,7 @@ public class Rocket : MonoBehaviour {
         state = State.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(success);
+        successParticles.Play();
         Invoke("LoadNextScene", 1f); // parameterise time
     }
 
@@ -102,6 +110,7 @@ public class Rocket : MonoBehaviour {
         state = State.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(death);
+        deathParticles.Play();
         Invoke("LoadFirstLevel", 1f); // parameterise time
     }
 
