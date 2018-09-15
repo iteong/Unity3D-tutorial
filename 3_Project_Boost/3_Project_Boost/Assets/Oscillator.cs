@@ -8,9 +8,7 @@ public class Oscillator : MonoBehaviour {
     [SerializeField] Vector3 movementVector = new Vector3(10f, 10f, 10f); // store a movement vector
     [SerializeField] float period = 2f;
 
-    // todo remove from inspector later
-    [Range(0,1)] [SerializeField] float movementFactor; // 0 for not moved, 1 for fully moved
-
+    float movementFactor; // 0 for not moved, 1 for fully moved
     Vector3 startingPos; // must be stored for absolute movement
 
 	// Use this for initialization
@@ -30,7 +28,7 @@ public class Oscillator : MonoBehaviour {
 
         print(rawSinWave);
 
-        movementFactor = rawSinWave / 2f + 0.5f;
+        movementFactor = rawSinWave / 2f + 0.5f; // goes from -0.5 to 0.5 to 0 to 1
         Vector3 offset = movementVector * movementFactor;
         transform.position = startingPos + offset;
 	}
