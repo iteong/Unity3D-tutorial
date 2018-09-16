@@ -101,7 +101,6 @@ public class Rocket : MonoBehaviour {
 
         switch (collision.gameObject.tag) {
             case "Friendly":
-                print("OK");
                 break;
             case "Finish":
                 StartSuccessSequence();
@@ -132,7 +131,16 @@ public class Rocket : MonoBehaviour {
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(1);
+        // get current scene based on build index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        // if next scene is the last scene, return to first scene
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     private void LoadFirstLevel()
